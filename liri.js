@@ -4,6 +4,8 @@ var axios = require("axios");
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
+var arg1 = process.argv[2];
+var arg2 = process.argv[3];
 
 
 //omdb -- movie-this//
@@ -12,7 +14,6 @@ axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=tr
   });
 
 //bands in town -- concert-this//
-var artist = process.argv[3]
 axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function(response) {
     console.log(response.data)
 })
