@@ -7,23 +7,41 @@ var spotify = new Spotify(keys.spotify);
 var arg1 = process.argv[2];
 var arg2 = process.argv[3];
 
-
-//omdb -- movie-this//
-axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(function(response) {
-    console.log("Here is your movie information: " + response.data.imdbRating);
+// OMDB movie-this function //
+//Title
+//Year
+//IMDB Rating
+//Rotten Tomatoes Rating
+//Country produced
+//Language
+//Plot
+//Actors
+function movieThis(arg1) {
+    axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(function(response) {
+    console.log(
+    "Movie Title: " + response.data.Title, 
+    "\nYear: " + response.data.Year,
+    "\nIMDB Rating: " + response.data.imdbRating,
+    "\nRotten Tomatoes Rating: " + response.data.Ratings[1],
+    "\nCountry: " + response.data.Country,
+    "\nLanguage: " + response.data.Language,
+    "\nMovie Plot: " + response.data.Plot,
+    "\nActors: " + response.data.Actors);
   });
+}
 
-//bands in town -- concert-this//
-axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function(response) {
-    console.log(response.data)
+//bands in town -- concert-this -- ask Samuel about this one//
+fucntion concertThis(arg1) {
+    axios.get("https://rest.bandsintown.com/artists/" + arg2 + "/events?app_id=codingbootcamp").then(function(response) {
+        console.log(response.data)
+
+}
 })
 
 //spotify -- spotify-this-song//
-spotify.search({ type: 'track', query: process.argv[3]}).then(function(response) {
-    if (err) {
-      return console.log(err);
-    }
-   
+fucntion spotifyThisSong(arg1) {
+    spotify.search({ type: 'track', query: process.argv[3]}).then(function(response) {
+    
   console.log("works"); 
   });
 
@@ -40,3 +58,7 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   console.log(dataArray);
 
 });
+
+// finish your function first in all variables, or just plain functions -- 4 functions//
+// switch statements for all commands//
+
