@@ -2,6 +2,7 @@ require("dotenv").config();
 
 var axios = require("axios");
 var keys = require("./keys.js");
+var moment = require("moment");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var arg1 = process.argv[2];
@@ -16,7 +17,7 @@ var arg2 = process.argv[3];
 //Language
 //Plot
 //Actors
-function movieThis(arg1) {
+function movieThis(arg2) {
     axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(function(response) {
     console.log(
     "Movie Title: " + response.data.Title, 
@@ -31,19 +32,21 @@ function movieThis(arg1) {
 }
 
 //bands in town -- concert-this -- ask Samuel about this one//
-fucntion concertThis(arg1) {
+function concertThis(arg2) {
     axios.get("https://rest.bandsintown.com/artists/" + arg2 + "/events?app_id=codingbootcamp").then(function(response) {
-        console.log(response.data)
-
+        console.log(response.data[0].venue.name)
+        console.log(response.data[0].venue.city + ", " + response.data[0].venue.country)
+        console.log(moment(response.data[0].datetime).format("MM-DD-YYYY"))
 }
-})
+    )}
 
 //spotify -- spotify-this-song//
-fucntion spotifyThisSong(arg1) {
+function spotifyThisSong(arg2) {
     spotify.search({ type: 'track', query: arg2}).then(function(response) {
     
   console.log("This is the song you asked for: "); 
   });
+}
 
 //random.txt -- do-what-it-says//
 function doWhatItSays(arg1){
@@ -80,6 +83,6 @@ switch(arg1) {
       break;
   }
 
+
 // finish your function first in all variables, or just plain functions -- 4 functions//
 // switch statements for all commands//
-
