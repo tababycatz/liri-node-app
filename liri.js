@@ -40,12 +40,14 @@ fucntion concertThis(arg1) {
 
 //spotify -- spotify-this-song//
 fucntion spotifyThisSong(arg1) {
-    spotify.search({ type: 'track', query: process.argv[3]}).then(function(response) {
+    spotify.search({ type: 'track', query: arg2}).then(function(response) {
     
-  console.log("works"); 
+  console.log("This is the song you asked for: "); 
   });
 
 //random.txt -- do-what-it-says//
+function doWhatItSays(arg1){
+    
 var fs = require("fs");
 
 fs.readFile("random.txt", "utf8", function(error, data) {
@@ -57,7 +59,26 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   var dataArray = data.split(",");
   console.log(dataArray);
 
-});
+})
+};
+
+switch(arg1) {
+    case "movie-this":
+      movieThis(arg2)
+      break;
+
+    case "concert-this":
+      concertThis(arg2)
+      break;
+    
+    case "spotify-this-song":
+      spotifyThisSong(arg2)
+      break;
+
+    case "do-what-it-says":
+      doWhatItSays(arg2)
+      break;
+  }
 
 // finish your function first in all variables, or just plain functions -- 4 functions//
 // switch statements for all commands//
