@@ -31,7 +31,10 @@ function movieThis(arg2) {
   });
 }
 
-//bands in town -- concert-this -- ask Samuel about this one//
+//bands in town -- concert-this function//
+//name of venue
+//venue location
+//date of event
 function concertThis(arg2) {
     axios.get("https://rest.bandsintown.com/artists/" + arg2 + "/events?app_id=codingbootcamp").then(function(response) {
         console.log(response.data[0].venue.name)
@@ -40,11 +43,15 @@ function concertThis(arg2) {
 }
     )}
 
-//spotify -- spotify-this-song//
+//spotify -- spotify-this-song function//
+//artist-s
+//song name
+//preview link of song from spotify
+//album song is from
 function spotifyThisSong(arg2) {
     spotify.search({ type: 'track', query: arg2}).then(function(response) {
     
-  console.log("This is the song you asked for: "); 
+  console.log(response); 
   });
 }
 
