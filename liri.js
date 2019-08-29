@@ -21,10 +21,8 @@ function movieThis(arg2) {
     if (!arg2) {
         arg2 = "Mr. Nobody"
     }
-    console.log("arg2: " +arg2)
     axios.get("http://www.omdbapi.com/?t=" + arg2 + "&plot=short&apikey=trilogy").then(function (response) {
 
-        // else {
             console.log(
                 "Movie Title: " + response.data.Title,
                 "\nYear: " + response.data.Year,
@@ -33,8 +31,7 @@ function movieThis(arg2) {
                 "\nCountry: " + response.data.Country,
                 "\nLanguage: " + response.data.Language,
                 "\nMovie Plot: " + response.data.Plot,
-                "\nActors: " + response.data.Actors);
-        // }
+                "\nActors: " + response.data.Actors)
     })
 };
 
@@ -73,13 +70,19 @@ function doWhatItSays() {
 
     var fs = require("fs")
 
+    
+    
     fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             return console.log(error)
-        }
-        console.log(spotifyThisSong(data))
-
+        } 
+        
+        var dataArray = data.split(',')
+        arg1 = dataArray[0]
+        arg2 = dataArray[1]
+        console.log(spotifyThisSong(arg2));
     });
+    
 };
 
 switch (arg1) {
