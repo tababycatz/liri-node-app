@@ -18,7 +18,7 @@ var arg2 = process.argv[3];
 //Plot
 //Actors
 function movieThis(arg2) {
-    axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(function(response) {
+    axios.get("http://www.omdbapi.com/?t=&plot=short&apikey=trilogy").then(function(response) {
     console.log(
     "Movie Title: " + response.data.Title, 
     "\nYear: " + response.data.Year,
@@ -49,12 +49,11 @@ function concertThis(arg2) {
 //preview link of song from spotify
 //album song is from
 function spotifyThisSong(arg2) {
-    spotify.search({ type: 'track', query: arg2}).then(function(response) {
+    spotify.search({ type: 'track', query: arg2 }).then(function(response){
+        console.log(response);       
+    });
     
-  console.log(response); 
-  });
-}
-
+};
 //random.txt -- do-what-it-says//
 function doWhatItSays(arg1){
     
@@ -69,7 +68,7 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   var dataArray = data.split(",");
   console.log(dataArray);
 
-})
+});
 };
 
 switch(arg1) {
