@@ -50,23 +50,26 @@ function concertThis(arg2) {
 //album song is from
 function spotifyThisSong(arg2) {
     spotify.search({ type: 'track', query: arg2 }).then(function(response){
-        console.log(response);       
+        var data = response.tracks.items[0];
+        console.log(
+            "Artist: " + data.artists[0].name,
+            "\nSong: " + data.name,
+            "\nLink to Song: " + data.preview_url,
+            "\nAlbum: " + data.album.name 
+        );       
     });
     
 };
 //random.txt -- do-what-it-says//
-function doWhatItSays(arg1){
+function doWhatItSays(){
     
-var fs = require("fs");
+var fs = require("fs")
 
 fs.readFile("random.txt", "utf8", function(error, data) {
   if (error) {
-    return console.log(error);
+    return console.log(error)
   }
-  console.log(data);
-
-  var dataArray = data.split(",");
-  console.log(dataArray);
+ console.log(spotifyThisSong(data))
 
 });
 };
@@ -85,10 +88,6 @@ switch(arg1) {
       break;
 
     case "do-what-it-says":
-      doWhatItSays(arg2)
+      doWhatItSays()
       break;
-  }
-
-
-// finish your function first in all variables, or just plain functions -- 4 functions//
-// switch statements for all commands//
+  };
